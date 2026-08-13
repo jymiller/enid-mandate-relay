@@ -433,7 +433,8 @@ ui.agentB.addEventListener("click", () => {
     }
     stages.agentB.root.dataset.decision = decision.toLowerCase();
     stages.agentB.root.querySelector(".decision-glyph").textContent = decision || "?";
-    const identity = view.agentId ? ` · ${String(view.agentId)}` : "";
+    const freshRunId = view.agentBRunId || view.agentId;
+    const identity = freshRunId ? ` · ${String(freshRunId)}` : "";
     setStage(
       "agentB",
       isAllow ? "complete" : "error",
