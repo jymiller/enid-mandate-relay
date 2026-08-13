@@ -3,7 +3,7 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { MemoryRelayStore, MongoRelayStore } from "./relay-store.mjs";
-import { RelayService, spawnWorker } from "./relay-service.mjs";
+import { RelayService, spawnWorker, unavailableState } from "./relay-service.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const uri = process.env.MONGODB_URI;
@@ -44,7 +44,9 @@ const server = createServer(async (request, response) => {
   } catch (error) {
     const status = error.status || (error.code === "ENOENT" ? 404 : 503);
     response.writeHead(status, { "content-type": "application/json; charset=utf-8", "cache-control": "no-store" });
-    response.end(JSON.stringify({ mode: "OFFLINE", liveAtlas: false, decision: "HOLD", reason: status === 404 ? "NOT_FOUND" : "DB_UNAVAILABLE" }));
+    response.end(JSON.stringify(status === 404
+      ? { mode: "OFFLINE", liveAtlas: false, decision: "HOLD", reason: "NOT_FOUND", protectedDelta: 0, actionCount: null }
+      : unavailableState()));
   }
 });
 

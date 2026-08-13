@@ -55,7 +55,7 @@ test("README identifies event-time scope and a contiguous 60-second script", asy
 
   assert.match(readme, /Built on \*\*August 13, 2026\*\*/);
   assert.match(readme, /No code was copied from the private Enid repository/);
-  assert.match(readme, /PUBLIC_REPO_URL_TODO/);
+  assert.match(readme, /https:\/\/github\.com\/jymiller\/enid-mandate-relay/);
   assert.match(readme, /VIDEO_URL_TODO/);
 
   const stamps = [...readme.matchAll(/\*\*(\d{2}):(\d{2})–(\d{2}):(\d{2})\*\*/g)].map((match) => ({

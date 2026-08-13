@@ -5,6 +5,17 @@ import { TASK_ID } from "./relay-store.mjs";
 
 const workerPath = fileURLToPath(new URL("./agent-worker.mjs", import.meta.url));
 
+export function unavailableState() {
+  return {
+    mode: "OFFLINE",
+    liveAtlas: false,
+    decision: "HOLD",
+    reason: "DB_UNAVAILABLE",
+    protectedDelta: 0,
+    actionCount: null,
+  };
+}
+
 export function spawnWorker(role, attemptId = "") {
   return new Promise((resolve, reject) => {
     const child = spawn(process.execPath, [workerPath, role, TASK_ID, attemptId], {
