@@ -6,7 +6,7 @@ Built on **August 13, 2026** during SF .local Build Fest. This repository is a n
 
 | Public repo | One-minute video |
 | --- | --- |
-| `PUBLIC_REPO_URL_TODO` | `VIDEO_URL_TODO` |
+| <https://github.com/jymiller/enid-mandate-relay> | `VIDEO_URL_TODO` |
 
 ## The proof
 

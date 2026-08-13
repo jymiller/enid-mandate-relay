@@ -32,7 +32,7 @@ MongoDB Atlas — using a project and cluster created through the **SF .local Bu
 
 ## Links
 
-- Public GitHub repository: `PUBLIC_REPO_URL_TODO`
+- Public GitHub repository: <https://github.com/jymiller/enid-mandate-relay>
 - One-minute video: `VIDEO_URL_TODO`
 
 ## Final truth gates
