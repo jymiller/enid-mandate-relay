@@ -1,7 +1,7 @@
 {
   "name": "enid-mandate-relay",
   "version": "1.0.0",
-  "private": false,
+  "private": true,
   "type": "module",
   "description": "Event-time MongoDB proof of agent continuity with bounded authority.",
   "engines": { "node": ">=22" },
