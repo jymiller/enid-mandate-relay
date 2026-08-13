@@ -6,7 +6,7 @@ Built on **August 13, 2026** during SF .local Build Fest. This repository is a n
 
 | Public repo | One-minute video |
 | --- | --- |
-| <https://github.com/jymiller/enid-mandate-relay> | `VIDEO_URL_TODO` |
+| <https://github.com/jymiller/enid-mandate-relay> | [60-second live Atlas demo](https://github.com/jymiller/enid-mandate-relay/releases/download/demo-2026-08-13/enid-mandate-relay-demo.mp4) |
 
 ## The proof
 
