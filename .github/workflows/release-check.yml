@@ -1,0 +1,28 @@
+name: Release safety
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-today-only-release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      EVENT_BUILD_DATE: "2026-08-13"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run release:check
+

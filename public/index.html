@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <meta
+      name="description"
+      content="Enid Mandate: a live MongoDB checkpoint handoff and authority-revocation proof."
+    />
+    <title>Enid Mandate — MongoDB authority proof</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script type="module" src="/app.js"></script>
+  </head>
+  <body data-connection="offline">
+    <a class="skip-link" href="#demo">Skip to demo</a>
+
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Enid Mandate home">
+        <span class="brand-mark" aria-hidden="true">E</span>
+        <span>ENID / MANDATE</span>
+      </a>
+
+      <div class="connection" id="connectionBadge" role="status" aria-live="polite">
+        <span class="connection-dot" aria-hidden="true"></span>
+        <span id="connectionText">OFFLINE</span>
+      </div>
+    </header>
+
+    <main id="demo">
+      <section class="hero" aria-labelledby="pageTitle">
+        <div>
+          <p class="eyebrow">MONGODB × ENID MANDATE · BUILT AUG 13, 2026</p>
+          <h1 id="pageTitle">One handoff.<br /><em>One hard stop.</em></h1>
+        </div>
+        <div class="hero-proof" aria-label="What this demonstration proves">
+          <span>Fresh agent resumes</span>
+          <span aria-hidden="true">→</span>
+          <span>Authority decides</span>
+        </div>
+      </section>
+
+      <section class="proof-strip" aria-labelledby="proofTitle">
+        <div class="proof-heading">
+          <span class="pulse" aria-hidden="true"></span>
+          <h2 id="proofTitle">LIVE PROOF</h2>
+        </div>
+        <dl>
+          <div>
+            <dt>Stored checkpoint</dt>
+            <dd id="checkpointValue">—</dd>
+          </div>
+          <div>
+            <dt>Authority</dt>
+            <dd id="authorityValue">—</dd>
+          </div>
+          <div>
+            <dt>Decision</dt>
+            <dd id="decisionValue">—</dd>
+          </div>
+          <div>
+            <dt>Actions written</dt>
+            <dd id="actionCountValue">—</dd>
+          </div>
+          <div>
+            <dt>Agent A process</dt>
+            <dd id="agentAProcessValue">—</dd>
+          </div>
+          <div>
+            <dt>Latest Agent B</dt>
+            <dd id="agentBProcessValue">—</dd>
+          </div>
+          <div>
+            <dt>Mongo document</dt>
+            <dd id="documentDigestValue">—</dd>
+          </div>
+          <div>
+            <dt>Unrelated work</dt>
+            <dd id="unrelatedCountValue">—</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="flow" aria-labelledby="flowTitle">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">RUN THE PROOF</p>
+            <h2 id="flowTitle">Four clicks. Database evidence.</h2>
+          </div>
+          <button class="reset-button" id="resetButton" type="button">
+            <span aria-hidden="true">↻</span> Reset run
+          </button>
+        </div>
+
+        <ol class="steps" aria-label="Demonstration steps">
+          <li class="step" id="stepA" data-state="ready">
+            <div class="step-rail" aria-hidden="true">
+              <span class="step-number">01</span>
+              <span class="rail-line"></span>
+            </div>
+            <article>
+              <div class="step-topline">
+                <span class="actor">AGENT A</span>
+                <span class="step-state" id="stepAState">READY</span>
+              </div>
+              <h3>Save checkpoint</h3>
+              <div class="micro-flow" aria-hidden="true">
+                <span class="agent-glyph">A</span>
+                <span class="arrow">→</span>
+                <span class="database-glyph"><i></i></span>
+              </div>
+              <p class="result" id="stepAResult">Waiting for MongoDB · process must exit</p>
+              <button class="run-button" id="agentAButton" type="button">
+                Save to MongoDB <span aria-hidden="true">→</span>
+              </button>
+            </article>
+          </li>
+
+          <li class="step" id="stepB" data-state="waiting">
+            <div class="step-rail" aria-hidden="true">
+              <span class="step-number">02</span>
+              <span class="rail-line"></span>
+            </div>
+            <article>
+              <div class="step-topline">
+                <span class="actor">FRESH AGENT B</span>
+                <span class="step-state" id="stepBState">WAITING</span>
+              </div>
+              <h3>Resume + attempt</h3>
+              <div class="micro-flow" aria-hidden="true">
+                <span class="database-glyph"><i></i></span>
+                <span class="arrow">→</span>
+                <span class="agent-glyph">B</span>
+                <span class="arrow">→</span>
+                <span class="decision-glyph">?</span>
+              </div>
+              <p class="result" id="stepBResult">No chat · no local checkpoint</p>
+              <button class="run-button" id="agentBButton" type="button" disabled>
+                Start fresh Agent B <span aria-hidden="true">→</span>
+              </button>
+            </article>
+          </li>
+
+          <li class="step" id="stepRevoke" data-state="waiting">
+            <div class="step-rail" aria-hidden="true">
+              <span class="step-number">03</span>
+              <span class="rail-line"></span>
+            </div>
+            <article>
+              <div class="step-topline">
+                <span class="actor">AUTHORITY</span>
+                <span class="step-state" id="stepRevokeState">WAITING</span>
+              </div>
+              <h3>Revoke in MongoDB</h3>
+              <div class="micro-flow" aria-hidden="true">
+                <span class="authority-glyph">✓</span>
+                <span class="arrow">→</span>
+                <span class="database-glyph"><i></i></span>
+              </div>
+              <p class="result" id="stepRevokeResult">Authority is unchanged</p>
+              <button class="run-button danger" id="revokeButton" type="button" disabled>
+                Revoke authority <span aria-hidden="true">×</span>
+              </button>
+            </article>
+          </li>
+
+          <li class="step" id="stepRetry" data-state="waiting">
+            <div class="step-rail" aria-hidden="true">
+              <span class="step-number">04</span>
+            </div>
+            <article>
+              <div class="step-topline">
+                <span class="actor">NEW AGENT B</span>
+                <span class="step-state" id="stepRetryState">WAITING</span>
+              </div>
+              <h3>Retry same action</h3>
+              <div class="micro-flow" aria-hidden="true">
+                <span class="agent-glyph">B′</span>
+                <span class="arrow">→</span>
+                <span class="decision-glyph">?</span>
+                <span class="arrow">→</span>
+                <span class="action-glyph">+?</span>
+              </div>
+              <p class="result" id="stepRetryResult">Waiting for revocation</p>
+              <button class="run-button" id="retryButton" type="button" disabled>
+                Retry exact action <span aria-hidden="true">→</span>
+              </button>
+            </article>
+          </li>
+        </ol>
+      </section>
+
+      <section class="receipt" aria-labelledby="receiptTitle">
+        <div class="receipt-heading">
+          <div>
+            <p class="eyebrow">SERVER RESPONSE</p>
+            <h2 id="receiptTitle">Evidence, not theater.</h2>
+          </div>
+          <span id="requestStatus">GET /api/state</span>
+        </div>
+        <pre id="rawProof" tabindex="0" aria-label="Latest server evidence">Connecting…</pre>
+      </section>
+    </main>
+
+    <footer>
+      <span>ENID MANDATE · RELAY PROOF · EVENT-TIME BUILD</span>
+      <span>MongoDB changes the next permitted action.</span>
+    </footer>
+
+    <div class="sr-only" id="announcer" aria-live="assertive"></div>
+  </body>
+</html>
