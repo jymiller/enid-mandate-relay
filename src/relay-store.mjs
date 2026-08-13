@@ -107,10 +107,20 @@ export class MongoRelayStore {
           return receipt;
         }
 
-        const authority = await this.db.collection("authorities").findOne(
+        const authorities = this.db.collection("authorities");
+        // This conditional write makes the authority check part of the same
+        // transaction as the protected counter and receipt. A concurrent
+        // revocation therefore either follows this action or forces a retry
+        // that observes REVOKED; an old snapshot cannot slip through.
+        const currentAuthority = await authorities.findOneAndUpdate(
+          { authority_id: AUTHORITY_ID, status: "ACTIVE" },
+          { $inc: { gate_checks: 1 }, $set: { last_gate_at: new Date() } },
+          { session, returnDocument: "after" },
+        );
+        const authority = currentAuthority ?? await authorities.findOne(
           { authority_id: AUTHORITY_ID }, { session },
         );
-        const allowed = authority?.status === "ACTIVE";
+        const allowed = Boolean(currentAuthority);
         const protectedDelta = allowed ? 1 : 0;
         const unrelatedDelta = allowed ? 0 : 1;
         const updated = await this.db.collection("counters").findOneAndUpdate(
